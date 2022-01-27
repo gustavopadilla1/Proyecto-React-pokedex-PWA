@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [pokemon, setPokemon] = useState({});
   const [, setCurrentPokemonId] = useState(0);
+  const [busqueda, setbusqueda ] = useState("");
 
   const fetchPokemon = (id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -32,21 +33,38 @@ function App() {
     }
     return pokemon.id - 1;
   }
+ 
+  const Buscar = () => {
+    if(busqueda !== "" ){
+      fetchPokemon(busqueda);    
+    }else {      
+      alert("campo vacio ");
+    }
+  }
 
-  useEffect(() => { 
+const filtrar = e =>{
+  setbusqueda(e.target.value);
+}
+ 
+
+useEffect(() => { 
    console.log({ pokemon });
     setCurrentPokemonId(pokemon.id);
-    pokemon?.abilities?.map((ability) => console.log(ability.ability.name));
-     //fetchPokemon(currentPokemonId);    
+    pokemon?.abilities?.map((ability) => console.log(ability.ability.name));        
   }, [pokemon]);
 
   return (
     <div className="App">    
       <header className="App-header">    
       <button className='btn-github'>
-        <a  className='btn-github' href='https://github.com/gustavopadilla1/IDGS-10A_React-Pok-dex.git'>GitHub</a>
+        <a  className='btn-github' href='https://github.com/gustavopadilla1/Proyecto-React-pokedex-PWA.git'>GitHub</a>
       </button>
 
+      <div>
+      <input  className='buscar' type="text" placeholder='Buscar' value={busqueda} onChange={filtrar}></input>
+      <button  className='button-buscar' onClick={Buscar}>Buscar </button>
+      </div>  
+     
         <div className="flex-container">
           <img
             src={pokemon?.sprites?.back_default ?? "https://m.media-amazon.com/images/I/91s3ed2bcdL._SX500_.jpg"}
@@ -71,7 +89,7 @@ function App() {
       </header>
       
       <button className='button'>
-        <a href="#miModal" className='button'>Abilidades</a>
+        <a href="#miModal" className='button'>Habilidades</a>
       </button>
 
       <div id="miModal" className="modal">

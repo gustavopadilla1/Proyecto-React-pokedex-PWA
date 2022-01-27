@@ -89,6 +89,27 @@
   border-radius: 25px;
   font-size: 18px;
 }
+.buscar{
+  width: 5vw;
+  height: 5vh;
+  padding-left: 100px;
+  padding-right: 100px;
+  background-color:white;
+  color: rgb(31, 26, 26);  
+  border-color: green 2px;
+  border-radius: 25px;
+  font-size: 12px;
+
+}
+.button-buscar{
+
+  width: 5vw;
+  height: 5.5vh;
+  background-color: blue;
+  color: white;
+  border-radius: 25px;
+  font-size: 16px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
